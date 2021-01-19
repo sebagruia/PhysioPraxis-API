@@ -11,7 +11,7 @@
     "server": "nodemon server.js",
     "start": "node server.js"
   },
-  "author": "Sebastian Gruiagit ",
+  "author": "Sebastian Gruia ",
   "license": "ISC",
   "dependencies": {
     "contentful": "^8.1.7",
