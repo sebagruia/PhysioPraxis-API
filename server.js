@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client/build")));
+  app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
 const client = contentful.createClient({
@@ -27,13 +27,17 @@ app.get("/contentful/homeContent", async (req, res) => {
   res.send(homeContent);
 });
 
-app.get("/contentful/testimonialsHome", async (req, res) => {
+app.get("/contentful/testimonials", async (req, res) => {
   const testimonialsHome = await client.getEntries({content_type:'testimonial'});
   res.send(testimonialsHome);
 });
 
+app.get("/contentful/aboutUs", async (req, res) => {
+  const aboutUs = await client.getEntry('6HiiszYhxuNF18wxss5Ijd');
+  res.send(aboutUs);
+});
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
   res.send("Merge Serverul");
 });
 
