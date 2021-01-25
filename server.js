@@ -37,6 +37,16 @@ app.get("/contentful/aboutUs", async (req, res) => {
   res.send(aboutUs);
 });
 
+app.get("/contentful/services", async (req, res) => {
+  const services = await client.getEntries({content_type:'services'});
+  res.send(services);
+});
+
+app.get("/contentful/posts", async (req, res) => {
+  const posts = await client.getEntries({content_type:'post'});
+  res.send(posts);
+});
+
 app.get("/", (req, res) => {
   res.send("Merge Serverul");
 });
