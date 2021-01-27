@@ -55,6 +55,7 @@ app.get("/contentful/posts", async (req, res) => {
 app.post("/booking", async (req, res) => {
   console.log(req.body);
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST");
   const data = {
     service_id: process.env.EMAILJS_YOUR_SERVICE_ID,
     template_id: req.body.date
