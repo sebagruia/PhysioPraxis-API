@@ -52,35 +52,6 @@ app.get("/contentful/posts", async (req, res) => {
   res.send(posts);
 });
 
-app.post("/booking", async (req, res) => {
-  console.log(req.body);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "POST");
-  const data = {
-    service_id: process.env.EMAILJS_YOUR_SERVICE_ID,
-    template_id: req.body.date
-      ? process.env.EMAILJS_YOUR_TEMPLATE_ID
-      : process.env.EMAILJS_YOUR_NEW_MESSAGE_TEMPLATE,
-    template_params: req.body,
-    user_id: process.env.EMAILJS_YOUR_USER_ID,
-  };
-  try {
-    const fetchResponse = await fetch(
-      "https://api.emailjs.com/api/v1.0/email/send",
-      {
-        method: "post",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        contentType: "application/json",
-      }
-    );
-
-    res.sendStatus(fetchResponse.status);
-  } catch (error) {
-    res.send(error);
-  }
-});
-
 app.get("/", (req, res) => {
   res.send("Merge Serverul");
 });
